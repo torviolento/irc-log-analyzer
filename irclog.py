@@ -41,6 +41,18 @@ def countMessages(data):
 	edsort = sorted(users, key=users.__getitem__, reverse = 1) #User with most messages first
 	for user in edsort:
 		print ("{:20}:- {}".format(user, users[user]))
+def countWords(data):
+	words = {}
+	for msg in data:
+		for word in msg[2].split(" "):
+			if word in words:
+				words[word] += 1
+			else:
+				words[word] = 1
+		edsort = sorted(words, key=words.__getitem__, reverse = 1) #User with most messages first
+	for word in edsort:
+		if  words[word]< 10: break
+		print ("{:20}:- {}".format(word, words[word]))
 		
 def printAll(data):
 	for msg in data:
@@ -48,11 +60,41 @@ def printAll(data):
 			print ("{} | <{}> {}".format(*msg))
 		except UnicodeEncodeError: # bubblegum, repair some day
 			print ("{} | <{}> {}".format(msg[0].encode("utf-8"),msg[1].encode("utf-8"), msg[2].encode("utf-8")))
+			
+			
+			
+			
+import re
+def find_all(data, find = [], id = 2, startpos = 0): #
+	turn = []
+	for msg in data:
+		for d in find:
+			if d in msg[2]:
+				turn.append(msg)
+	return turn
+def search_re_where(data, time = "[0-9]{2}:[0-9]{2}", user = "\w", msg = ".*"):
+	matcbox = []
+	res = re.compile(time),re.compile(user), re.compile(msg)
+	for msg in data:
+		for i in (0,1,2):
+			if res[i].match(msg[i]) is None:
+				break
+			elif i == 2: 
+				matcbox.append(msg)
+	return matcbox
+
 def main():
-	data = getDataFromIntternets()
-	parsed = htmlparser(data)
-	countMessages(parsed)	
-	printAll(parsed)
+	data = [["00:00","eeee","aa, bee, cee"],
+	["00:12","aaa","aa, bee, cee"],
+	["10:12","aaa","ab, bee, cee"],
+	["00:00","eee","e"],
+	["00:00","eee","aaeh"]]
+	for a in search_re_where(a, "00:[0-9]{2}"):
+		print(a[0])	
+	##data = getDataFromIntternets()
+	#parsed = htmlparser(data)
+	#countMessages(parsed)	
+	#countWords(parsed)
 if __name__ == "__main__":
 	main()
 
