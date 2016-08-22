@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="alchemy/alchemy.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
+
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="alchemy/alchemy.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
+    <script type="text/javascript">
+
+
+      alchemy.begin({
+        	dataSource: "//actors.json",
+        	nodeCaption: 'name',
+        	nodeMouseOver: 'name',
+            cluster: true,
+    });
+
+
+  </script>
+</head>
+<body>
+  <div class="alchemy" id="alchemy"></div>
+
+</body>
+</html>

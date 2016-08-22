@@ -62,7 +62,7 @@ def count_messages(data):
             users[msg[1]] += 1
         else:
             users[msg[1]] = 1 
-            
+            1
     edsort = sorted(users, key=users.__getitem__, reverse = 1) 
     # User with most messages first
     
